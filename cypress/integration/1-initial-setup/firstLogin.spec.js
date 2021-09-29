@@ -1,4 +1,4 @@
-describe('EMS Initial Start Up', () => {
+describe('EMS First login', () => {
 
 	it('First login', () => {
 		//Load json
