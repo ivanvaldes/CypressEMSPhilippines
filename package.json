@@ -19,5 +19,8 @@
   "homepage": "https://github.com/ivanvaldes/CypressEMSPhilippines#readme",
   "dependencies": {
     "cypress": "^8.4.1"
+  },
+  "devDependencies": {
+    "cypress-file-upload": "^5.0.8"
   }
 }

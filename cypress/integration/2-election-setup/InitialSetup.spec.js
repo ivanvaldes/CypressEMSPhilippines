@@ -16,7 +16,7 @@ describe('EMS Initial setup', () => {
             cy.get('#appName').contains('Election Management System')
 		})
 	})
-
+/*
     it('Election Event funtionality', () => {
         //Click on election event
         cy.get('.gwt-Label').contains('Election Event').click()
@@ -45,6 +45,24 @@ describe('EMS Initial setup', () => {
         cy.get('#startDate0month').type('7') 
         cy.get('[name="startDate0day"]').type('16') 
         cy.get('[name="startDate0year"]').type('2023')
+
+    })
+*/
+    it('Load COMELEC data', () => {
+        //Click on process data
+        cy.get('.gwt-Label').contains('Process Data').click()
+        //Click on 1. Import Electoral Data
+        cy.contains('td', '1. Import Electoral Data')
+        cy.contains('td', '1. Import Electoral Data').click()
+        //Upload mysql dump file 
+        cy.get('#db_check').check()
+        cy.get('input[value=Accept]').click()
+        const filepath = '../../deployment/data/labtest_with_plebiscite_local_national.sql'
+        cy.get('#file_upload_mysql').attachFile(filepath)
+        cy.get('#ok-mysql-button').click()
+        cy.get('.uploadingModalTitle').contains('Bulk load files are being uploaded to the server, please wait')
+
+
 
     })
 })
