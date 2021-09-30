@@ -16,7 +16,7 @@ describe('EMS Initial setup', () => {
             cy.get('#appName').contains('Election Management System')
 		})
 	})
-/*
+
     it('Election Event funtionality', () => {
         //Click on election event
         cy.get('.gwt-Label').contains('Election Event').click()
@@ -45,9 +45,11 @@ describe('EMS Initial setup', () => {
         cy.get('#startDate0month').type('7') 
         cy.get('[name="startDate0day"]').type('16') 
         cy.get('[name="startDate0year"]').type('2023')
+        cy.go('back')
+        cy.go('back')
 
     })
-*/
+
     it('Load COMELEC data', () => {
         //Click on process data
         cy.get('.gwt-Label').contains('Process Data').click()
