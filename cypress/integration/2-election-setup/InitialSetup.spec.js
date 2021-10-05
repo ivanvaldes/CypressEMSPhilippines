@@ -17,7 +17,7 @@ describe('EMS Initial setup', () => {
 		})
 	})
 
-    it('Election Event funtionality', () => {
+    it('Configure the Election', () => {
         //Click on election event
         cy.get('.gwt-Label').contains('Election Event').click()
         cy.get('.mnuTxtTitle').contains('1. Electoral Event')
@@ -25,26 +25,38 @@ describe('EMS Initial setup', () => {
         //Click on Electoral event
         cy.get('.frmLnk').contains('Search').click()
 
-        //fi
-        cy.get('#customCode').type('123456789') 
-        cy.get('#name').type('Bidding Election Process 2020') 
+        //Select and edit electoral event
+        cy.get('[name="rowIndex"]').click()
+        cy.get('#btnEDIT').click()
+        cy.url().should('include', '/crud.saes')
+        cy.wait(2000)
 
+        //Fill up electoral information
+        cy.fixture('electoralevent').then((event) => {
+            
+            //Name
+            cy.get('#name').clear()
+            cy.get('#name').type(event.name)
 
-        cy.get('#startDate0month').select('Aug').should('have.value', '7')
-        cy.get('[name="startDate0day"]').select('16').should('have.value', '16') 
-        cy.get('[name="startDate0year"]').select('2020').should('have.value', '2020')  
+            //Start Date
+            cy.get('#startDatemonth').select(event.startDateMonth)
+            cy.get('[name="startDateday"]').select(event.startDateDay)
+            cy.get('[name="startDateyear"]').select(event.startDateYear)
 
-        cy.get('[name="startDate1month"]').type('11') 
-        cy.get('[name="startDate1day"]').type('16') 
-        cy.get('[name="startDate1year"]').type('2021')
+            //End Date
+            cy.get('#finishDatemonth').select(event.endDateMonth)
+            cy.get('[name="finishDateday"]').select(event.endDateDay)
+            cy.get('[name="finishDateyear"]').select(event.endDateYear)
+            
+            //Election organization
+            cy.get('#electoralOrganization').clear()
+            cy.get('#electoralOrganization').type(event.electionOrganization)
 
-        cy.get('#finishDate0month').type('5') 
-        cy.get('[name="finishDate0day"]').type('16') 
-        cy.get('[name="finishDate0year"]').type('2022')
+		})
 
-        cy.get('#startDate0month').type('7') 
-        cy.get('[name="startDate0day"]').type('16') 
-        cy.get('[name="startDate0year"]').type('2023')
+        //save information
+        cy.get('[name="btnSave"]').click()
+        cy.go('back')
         cy.go('back')
         cy.go('back')
 
@@ -63,8 +75,5 @@ describe('EMS Initial setup', () => {
         cy.get('#file_upload_mysql').attachFile(filepath)
         cy.get('#ok-mysql-button').click()
         cy.get('.uploadingModalTitle').contains('Bulk load files are being uploaded to the server, please wait')
-
-
-
     })
 })
