@@ -1,6 +1,6 @@
 {
     "baseUrl": "https://127.0.0.1:8444/ssp/",
-    "smttUser": "XXXX",
+    "smttUser": "XXX",
     "smttPassword": "XXX",
     "dataURL" : "https://artifactory-aws.esbu.smartmatic.net/artifactory/ext-generic-local/phl/data/2022/LabTestDataSet/LabTest_COMELEC_2021_with_Plebiscites-0.0.21.tar.gz -O data.tar.gz",
     "certificatesURL": "https://artifactory-aws.esbu.smartmatic.net/artifactory/ext-generic-local/phl/data/2022/PKI/CertificatesECC-0.0.5.tar.gz"
