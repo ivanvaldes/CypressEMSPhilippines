@@ -16,15 +16,7 @@ describe('Download electoral data', () => {
 
     //Download certificates
     it('Connect and download certificates from Artifactory', () => {
-        cy.exec(
-            'wget --user='+Cypress.config().smttUser+
-            ' --password='+Cypress.config().smttPassword+
-            ' -v -d --auth-no-challenge '+
-            Cypress.config().certificatesURL+
-            ' -O data/certificates.tar.gz'
-        , { log: false }).then((result) => {           
-            cy.log('Certificates downloaded')
-        })
+        cy.downloadfile(Cypress.config().certificatesURL,'data/certificates.tar.gz')
 	})
 
     //Extract certificates
@@ -36,15 +28,7 @@ describe('Download electoral data', () => {
     
     //Download data from artifactory
     it('Connect and download data from Artifactory', () => {
-        cy.exec(
-            'wget --user='+Cypress.config().smttUser+
-            ' --password='+Cypress.config().smttPassword+
-            ' -v -d --auth-no-challenge '+
-            Cypress.config().dataURL+
-            ' -O data/data.tar.gz'
-        , { log: false }).then((result) => {           
-            cy.log('Data downloaded')
-        })
+        cy.downloadfile(Cypress.config().dataURL,'data/data.tar.gz')
 	})
 
     //Extract data
