@@ -3,11 +3,9 @@ describe('EMS First login', () => {
 	it('First login', () => {
 		//Load json
 		cy.fixture('initialsetup').then((data) => {
-			//Go to EMS page
-			cy.visit(Cypress.config().baseUrl)
-			cy.get('.gwt-InlineLabel').contains('Welcome')
 			//Login
 			cy.login(data.username, data.password)
+			
 			//Set new password
 			cy.get('.label-block-panel-title').contains('Change your password')
 			cy.get('input[type=password]').eq(0).type(data.password)

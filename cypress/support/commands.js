@@ -2,6 +2,12 @@ import 'cypress-file-upload';
 
 //Login command
 Cypress.Commands.add('login', (username, password) => {
+	//Go to EMS page
+	cy.visit(Cypress.config().baseUrl)
+	cy.wait(1000)
+	cy.get('.gwt-InlineLabel').contains('Welcome',{timeout: 7000})
+
+	//Fill up information
     cy.get('input[name="j_username"]').type(username)
 	cy.get('input[name="j_password"]').type(password)
 	cy.get('#login-submit-button').click()
