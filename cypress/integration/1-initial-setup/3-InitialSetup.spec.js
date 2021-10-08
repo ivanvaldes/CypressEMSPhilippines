@@ -8,13 +8,9 @@ describe('EMS Initial setup', () => {
 	it('Login', () => {
 		//Load json
 		cy.fixture('initialsetup').then((data) => {
-            //Go to EMS page
-            cy.visit(Cypress.config().baseUrl)
-            cy.wait(1000)
-            cy.get('.gwt-InlineLabel').contains('Welcome', {timeout: 6000})
             //Login
             cy.login(data.username, data.newPassword)
-            cy.get('#appName').contains('Election Management System')
+            cy.get('#appName').contains('Election Management System', {timeout: 7000})
 		})
 	})
     
